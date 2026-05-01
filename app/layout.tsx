@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import SessionProvider from "@/components/SessionProvider";
+import { Toaster } from "react-hot-toast";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -15,7 +17,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "FridgeToFork",
   description:
-    "An AI-powered meal planner that generates recipes based on ingredients you already have. Built with Next.js, TypeScript, MongoDB, and Google Gemini API.",
+    "An AI-powered meal planner that generates recipes based on ingredients you already have.",
 };
 
 export default function RootLayout({
@@ -28,7 +30,10 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <SessionProvider>{children}</SessionProvider>
+        <Toaster position="top-center" />
+      </body>
     </html>
   );
 }
