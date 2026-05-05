@@ -11,6 +11,8 @@ export interface IUser extends Document {
     servings: number;
   };
   ingredients: string[];
+  dailyGenerations: number;
+  lastGenerationDate: string;
   createdAt: Date;
 }
 
@@ -25,6 +27,8 @@ const UserSchema = new Schema<IUser>({
     servings: { type: Number, default: 2 },
   },
   ingredients: [{ type: String }],
+  dailyGenerations: { type: Number, default: 0 },
+  lastGenerationDate: { type: String, default: "" },
   createdAt: { type: Date, default: Date.now },
 });
 

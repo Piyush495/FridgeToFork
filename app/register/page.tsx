@@ -3,8 +3,6 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { signIn } from "next-auth/react";
-import toast from "react-hot-toast";
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -24,25 +22,20 @@ export default function RegisterPage() {
     });
 
     const data = await res.json();
-    toast.success("Account created successfully");
 
     if (!res.ok) {
       setError(data.error);
       setLoading(false);
       return;
     }
-    await signIn("credentials", {
-      email: form.email,
-      password: form.password,
-      redirect: false,
-    });
 
-    router.push("/dashboard");
+    // Simply go to login — no auto signIn
+    router.push("/login?registered=true");
   };
 
   return (
-    <main className="min-h-screen flex items-center justify-center bg-green-300">
-      <div className="bg-green-200 p-8 rounded-2xl shadow-sm border border-gray-100 w-full max-w-md">
+    <main className="min-h-screen flex items-center justify-center bg-gray-50">
+      <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 w-full max-w-md">
         <h1 className="text-2xl font-bold text-gray-800 mb-1">
           Create your account
         </h1>
@@ -63,7 +56,7 @@ export default function RegisterPage() {
             </label>
             <input
               type="text"
-              placeholder="John Doe"
+              placeholder="Piyush Gupta"
               value={form.name}
               onChange={(e) => setForm({ ...form, name: e.target.value })}
               required
@@ -77,7 +70,7 @@ export default function RegisterPage() {
             </label>
             <input
               type="email"
-              placeholder="John@example.com"
+              placeholder="you@example.com"
               value={form.email}
               onChange={(e) => setForm({ ...form, email: e.target.value })}
               required
@@ -102,7 +95,7 @@ export default function RegisterPage() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-green-500 hover:bg-green-600 text-white font-medium py-2.5 rounded-lg text-sm transition disabled:opacity-60 cursor-pointer"
+            className="w-full bg-green-500 hover:bg-green-600 text-white font-medium py-2.5 rounded-lg text-sm transition disabled:opacity-60"
           >
             {loading ? "Creating account..." : "Create account"}
           </button>
@@ -110,10 +103,7 @@ export default function RegisterPage() {
 
         <p className="text-center text-sm text-gray-500 mt-6">
           Already have an account?{" "}
-          <Link
-            href="/login"
-            className="text-green-600 font-medium hover:underline"
-          >
+          <Link href="/login" className="text-green-600 font-medium hover:underline">
             Log in
           </Link>
         </p>
