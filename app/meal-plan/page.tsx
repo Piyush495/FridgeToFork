@@ -87,63 +87,65 @@ export default function MealPlanPage() {
     const filledDays = plan.filter((d) => d.recipeId).length;
 
     return (
-        <main className="min-h-screen bg-gray-50">
+        <main className="min-h-screen bg-[#FEFAE0]">
             {/* Navbar */}
-            <nav className="bg-white border-b border-gray-100 px-6 py-4 flex items-center justify-between">
-                <h1 className="text-xl font-bold text-green-600">🍴 FridgeToFork</h1>
-                <div className="flex items-center gap-4">
-                    <Link href="/dashboard" className="text-sm text-gray-500 hover:text-gray-800 transition">
+            <nav className="bg-[#FEFAE0]/85 backdrop-blur-md border-b border-[#2D6A4F]/10 px-6 py-4 flex items-center justify-between sticky top-0 z-40">
+                <Link href="/dashboard" className="font-serif text-xl font-black text-[#2D6A4F] tracking-tight">
+                    Fridge<span className="text-[#774936]">To</span>Fork
+                </Link>
+                <div className="flex items-center gap-5">
+                    <Link href="/dashboard" className="text-sm text-[#7A7A6E] hover:text-[#2D6A4F] transition">
                         Dashboard
                     </Link>
-                    <Link href="/my-recipes" className="text-sm text-gray-500 hover:text-gray-800 transition">
+                    <Link href="/my-recipes" className="text-sm text-[#7A7A6E] hover:text-[#2D6A4F] transition">
                         My Recipes
                     </Link>
                     <button
                         onClick={() => signOut({ callbackUrl: "/login" })}
-                        className="text-sm text-gray-500 hover:text-red-500 transition"
+                        className="text-sm text-[#7A7A6E] hover:text-[#774936] transition"
                     >
                         Sign out
                     </button>
                 </div>
             </nav>
 
-            <div className="max-w-2xl mx-auto px-6 py-10">
+            <div className="max-w-2xl mx-auto px-6 py-12">
                 <div className="flex items-center justify-between mb-2">
-                    <h2 className="text-2xl font-bold text-gray-800">Weekly Meal Plan</h2>
-                    <span className="text-sm text-gray-400">{filledDays}/7 days planned</span>
+                    <h2 className="font-serif text-4xl md:text-5xl font-black text-[#1B1B1B] tracking-tight">Weekly Meal Plan</h2>
+                    <span className="text-sm text-[#7A7A6E]">{filledDays}/7 days planned</span>
                 </div>
-                <p className="text-gray-500 text-sm mb-8">
+                <p className="text-[#7A7A6E] text-base mb-8 font-light">
                     Assign saved recipes to each day of the week.
                 </p>
 
                 {/* Progress bar */}
-                <div className="w-full bg-gray-100 rounded-full h-1.5 mb-8">
+                <div className="w-full bg-[#2D6A4F]/10 rounded-full h-2 mb-8 overflow-hidden">
                     <div
-                        className="bg-green-500 h-1.5 rounded-full transition-all"
+                        className="bg-gradient-to-r from-[#2D6A4F] to-[#52B788] h-2 rounded-full transition-all"
                         style={{ width: `${(filledDays / 7) * 100}%` }}
                     />
                 </div>
 
                 {loading ? (
-                    <p className="text-center text-gray-400 text-sm py-20">Loading your plan...</p>
+                    <p className="text-center text-[#7A7A6E] text-sm py-20">Loading your plan...</p>
                 ) : (
                     <div className="space-y-3">
                         {plan.map((dayPlan) => (
                             <div
                                 key={dayPlan.day}
-                                className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5"
+                                className="bg-white rounded-2xl border border-black/5 shadow-sm p-5 hover:shadow-md transition-shadow"
                             >
-                                <div className="flex items-center justify-between">
-                                    <div className="flex items-center gap-3">
-                                        <span className="text-sm font-semibold text-gray-700 w-24">
+                                <div className="flex items-center justify-between flex-wrap gap-3">
+                                    <div className="flex items-center gap-3 flex-wrap">
+                                        <span className="text-xs font-medium text-[#2D6A4F] uppercase tracking-widest w-24">
                                             {dayPlan.day}
                                         </span>
                                         {dayPlan.recipeName ? (
-                                            <span className="text-sm text-green-700 bg-green-50 px-3 py-1 rounded-full border border-green-100">
+                                            <span className="text-sm font-medium text-[#2D6A4F] bg-[#D8F3DC] px-3 py-1 rounded-full border border-[#52B788]/30">
                                                 {dayPlan.recipeName}
                                             </span>
                                         ) : (
-                                            <span className="text-sm text-gray-400">No recipe assigned</span>
+                                            <span className="text-sm text-[#7A7A6E]/70 italic">No recipe assigned</span>
                                         )}
                                     </div>
                                     <div className="flex items-center gap-2">
@@ -151,7 +153,7 @@ export default function MealPlanPage() {
                                             <button
                                                 onClick={() => clearDay(dayPlan.day)}
                                                 disabled={updating === dayPlan.day}
-                                                className="text-xs text-gray-400 hover:text-red-400 transition"
+                                                className="text-xs text-[#7A7A6E] hover:text-[#774936] transition"
                                             >
                                                 Remove
                                             </button>
@@ -162,7 +164,7 @@ export default function MealPlanPage() {
                                                     activeDay === dayPlan.day ? null : dayPlan.day
                                                 )
                                             }
-                                            className="text-xs bg-green-500 hover:bg-green-600 text-white px-3 py-1.5 rounded-lg transition"
+                                            className="text-xs bg-[#2D6A4F] hover:bg-[#1e5038] text-white px-4 py-1.5 rounded-full font-medium transition shadow-sm shadow-[#2D6A4F]/20"
                                         >
                                             {activeDay === dayPlan.day ? "Cancel" : dayPlan.recipeId ? "Change" : "Assign"}
                                         </button>
@@ -171,11 +173,11 @@ export default function MealPlanPage() {
 
                                 {/* Recipe picker dropdown */}
                                 {activeDay === dayPlan.day && (
-                                    <div className="mt-4 border-t border-gray-50 pt-4">
+                                    <div className="mt-4 border-t border-[#2D6A4F]/10 pt-4">
                                         {savedRecipes.length === 0 ? (
-                                            <p className="text-sm text-gray-400">
+                                            <p className="text-sm text-[#7A7A6E]">
                                                 No saved recipes yet.{" "}
-                                                <Link href="/dashboard" className="text-green-600 hover:underline">
+                                                <Link href="/dashboard" className="text-[#2D6A4F] font-medium hover:underline">
                                                     Generate some first!
                                                 </Link>
                                             </p>
@@ -186,12 +188,12 @@ export default function MealPlanPage() {
                                                         key={recipe._id}
                                                         onClick={() => assignRecipe(dayPlan.day, recipe)}
                                                         disabled={updating === dayPlan.day}
-                                                        className="w-full text-left flex items-center justify-between px-4 py-2.5 rounded-xl border border-gray-100 hover:border-green-200 hover:bg-green-50 transition text-sm"
+                                                        className="w-full text-left flex items-center justify-between px-4 py-2.5 rounded-xl border border-[#2D6A4F]/10 hover:border-[#2D6A4F]/40 hover:bg-[#FEFAE0]/60 transition text-sm"
                                                     >
-                                                        <span className="font-medium text-gray-700">
+                                                        <span className="font-medium text-[#1B1B1B]">
                                                             {recipe.name}
                                                         </span>
-                                                        <span className="text-xs text-gray-400">
+                                                        <span className="text-xs text-[#7A7A6E]">
                                                             {recipe.cookTime} mins · {recipe.cuisineType}
                                                         </span>
                                                     </button>
@@ -207,16 +209,16 @@ export default function MealPlanPage() {
 
                 {/* Shopping list CTA */}
                 {filledDays >= 3 && (
-                    <div className="mt-8 bg-green-50 border border-green-100 rounded-2xl p-6 text-center">
-                        <p className="text-sm font-medium text-green-800 mb-1">
+                    <div className="mt-8 bg-[#2D6A4F] rounded-3xl p-8 text-center relative overflow-hidden">
+                        <p className="font-serif text-2xl font-black text-white tracking-tight mb-2">
                             🛒 Ready to generate your shopping list?
                         </p>
-                        <p className="text-xs text-green-600 mb-4">
+                        <p className="text-white/70 text-sm mb-6 font-light">
                             You have {filledDays} days planned — we can generate a full shopping list!
                         </p>
                         <Link
                             href="/shopping-list"
-                            className="bg-green-500 hover:bg-green-600 text-white text-sm font-medium px-6 py-2.5 rounded-xl transition inline-block"
+                            className="inline-block bg-white text-[#2D6A4F] px-8 py-3 rounded-full font-medium hover:-translate-y-0.5 hover:shadow-xl transition-all"
                         >
                             Generate shopping list
                         </Link>

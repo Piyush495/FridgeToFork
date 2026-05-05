@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
+import { SkeletonRecipeDetail } from "@/components/Skeleton";
 
 interface Recipe {
     _id: string;
@@ -51,8 +52,18 @@ export default function RecipePage() {
 
     if (loading) {
         return (
-            <main className="min-h-screen bg-gray-50 flex items-center justify-center">
-                <p className="text-gray-400 text-sm">Loading recipe...</p>
+            <main className="min-h-screen bg-[#FEFAE0]">
+                <nav className="bg-[#FEFAE0]/85 backdrop-blur-md border-b border-[#2D6A4F]/10 px-6 py-4 flex items-center justify-between sticky top-0 z-40">
+                    <Link href="/dashboard" className="font-serif text-xl font-black text-[#2D6A4F] tracking-tight">
+                        Fridge<span className="text-[#774936]">To</span>Fork
+                    </Link>
+                    <Link href="/dashboard" className="text-sm text-[#7A7A6E] hover:text-[#2D6A4F] transition">
+                        ← Back to dashboard
+                    </Link>
+                </nav>
+                <div className="max-w-2xl mx-auto px-6 py-12">
+                    <SkeletonRecipeDetail />
+                </div>
             </main>
         );
     }
@@ -60,61 +71,67 @@ export default function RecipePage() {
     if (!recipe) return null;
 
     return (
-        <main className="min-h-screen bg-gray-50">
+        <main className="min-h-screen bg-[#FEFAE0]">
             {/* Navbar */}
-            <nav className="bg-white border-b border-gray-100 px-6 py-4 flex items-center justify-between">
-                <h1 className="text-xl font-bold text-green-600">🍴 FridgeToFork</h1>
+            <nav className="bg-[#FEFAE0]/85 backdrop-blur-md border-b border-[#2D6A4F]/10 px-6 py-4 flex items-center justify-between sticky top-0 z-40">
+                <Link href="/dashboard" className="font-serif text-xl font-black text-[#2D6A4F] tracking-tight">
+                    Fridge<span className="text-[#774936]">To</span>Fork
+                </Link>
                 <Link
                     href="/dashboard"
-                    className="text-sm text-gray-500 hover:text-gray-800 transition"
+                    className="text-sm text-[#7A7A6E] hover:text-[#2D6A4F] transition"
                 >
                     ← Back to dashboard
                 </Link>
             </nav>
 
-            <div className="max-w-2xl mx-auto px-6 py-10">
+            <div className="max-w-2xl mx-auto px-6 py-12">
                 {/* Header */}
-                <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 mb-6">
-                    <div className="flex items-start justify-between mb-4">
-                        <h2 className="text-2xl font-bold text-gray-800">{recipe.name}</h2>
-                        <span className="text-xs bg-green-50 text-green-700 px-3 py-1.5 rounded-full border border-green-100 flex-shrink-0 ml-3">
+                <div className="bg-white rounded-2xl border border-black/5 shadow-sm p-6 mb-5">
+                    <div className="flex items-start justify-between mb-4 gap-3">
+                        <h2 className="font-serif text-3xl md:text-4xl font-black text-[#1B1B1B] tracking-tight leading-tight">{recipe.name}</h2>
+                        <span className="text-xs bg-[#D8F3DC] text-[#2D6A4F] px-3 py-1.5 rounded-full border border-[#52B788]/30 flex-shrink-0 font-medium">
                             {recipe.cuisineType}
                         </span>
                     </div>
 
                     {/* Stats row */}
-                    <div className="flex flex-wrap gap-4 text-sm text-gray-500 mb-6">
-                        <span className="flex items-center gap-1">⏱ {recipe.cookTime} mins</span>
-                        <span className="flex items-center gap-1">👥 {recipe.servings} servings</span>
-                        <span className="flex items-center gap-1">💪 {recipe.macros?.protein}g protein</span>
-                        <span className="flex items-center gap-1">🌾 {recipe.macros?.carbs}g carbs</span>
-                        <span className="flex items-center gap-1">🧈 {recipe.macros?.fat}g fat</span>
+                    <div className="flex flex-wrap gap-x-5 gap-y-2 text-sm text-[#7A7A6E] mb-6">
+                        <span className="flex items-center gap-1.5">⏱ {recipe.cookTime} mins</span>
+                        <span className="flex items-center gap-1.5">👥 {recipe.servings} servings</span>
+                        <span className="flex items-center gap-1.5">💪 {recipe.macros?.protein}g protein</span>
+                        <span className="flex items-center gap-1.5">🌾 {recipe.macros?.carbs}g carbs</span>
+                        <span className="flex items-center gap-1.5">🧈 {recipe.macros?.fat}g fat</span>
                     </div>
 
                     {/* Save button */}
                     <button
                         onClick={handleSave}
                         disabled={saved || saving}
-                        className="w-full border border-green-500 text-green-600 hover:bg-green-50 disabled:opacity-50 disabled:cursor-not-allowed font-medium py-2.5 rounded-xl text-sm transition"
+                        className={`w-full font-medium py-3 rounded-full text-sm transition ${saved
+                            ? "bg-[#D8F3DC] text-[#2D6A4F] border border-[#52B788]/30 cursor-default"
+                            : "bg-[#2D6A4F] hover:bg-[#1e5038] text-white shadow-lg shadow-[#2D6A4F]/25 hover:-translate-y-0.5 disabled:opacity-50 disabled:hover:translate-y-0"
+                            }`}
                     >
                         {saved ? "✓ Saved to my recipes" : saving ? "Saving..." : "Save this recipe"}
                     </button>
                 </div>
 
                 {/* Ingredients */}
-                <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 mb-6">
-                    <h3 className="text-base font-bold text-gray-800 mb-4">
+                <div className="bg-white rounded-2xl border border-black/5 shadow-sm p-6 mb-5">
+                    <h3 className="font-serif text-xl font-bold text-[#1B1B1B] mb-4">
                         Ingredients
                     </h3>
-                    <ul className="space-y-2">
+                    <ul className="space-y-2.5">
                         {recipe.ingredients.map((ing, i) => (
                             <li
                                 key={i}
-                                className="flex items-center gap-3 text-sm text-gray-700"
+                                className="flex items-center gap-3 text-sm text-[#1B1B1B]"
                             >
-                                <span className="w-2 h-2 rounded-full bg-green-400 flex-shrink-0" />
+                                <span className="w-1.5 h-1.5 rounded-full bg-[#52B788] flex-shrink-0" />
                                 <span>
-                                    {ing.amount} {ing.unit} {ing.item}
+                                    <span className="font-medium">{ing.amount} {ing.unit}</span>{" "}
+                                    <span className="text-[#7A7A6E]">{ing.item}</span>
                                 </span>
                             </li>
                         ))}
@@ -122,17 +139,17 @@ export default function RecipePage() {
                 </div>
 
                 {/* Steps */}
-                <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
-                    <h3 className="text-base font-bold text-gray-800 mb-4">
+                <div className="bg-white rounded-2xl border border-black/5 shadow-sm p-6">
+                    <h3 className="font-serif text-xl font-bold text-[#1B1B1B] mb-4">
                         Instructions
                     </h3>
                     <ol className="space-y-4">
                         {recipe.steps.map((step, i) => (
-                            <li key={i} className="flex gap-4 text-sm text-gray-700">
-                                <span className="w-6 h-6 rounded-full bg-green-500 text-white text-xs flex items-center justify-center flex-shrink-0 mt-0.5 font-medium">
+                            <li key={i} className="flex gap-4 text-sm text-[#1B1B1B]">
+                                <span className="w-7 h-7 rounded-full bg-[#2D6A4F] text-white text-xs flex items-center justify-center flex-shrink-0 mt-0.5 font-bold shadow-sm shadow-[#2D6A4F]/30">
                                     {i + 1}
                                 </span>
-                                <p className="leading-relaxed">{step}</p>
+                                <p className="leading-relaxed pt-0.5">{step}</p>
                             </li>
                         ))}
                     </ol>
