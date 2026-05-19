@@ -84,23 +84,23 @@ export default function DashboardPage() {
     return (
         <main className="min-h-screen bg-[#FEFAE0]">
             {/* Navbar */}
-            <nav className="bg-[#FEFAE0]/85 backdrop-blur-md border-b border-[#2D6A4F]/10 px-6 py-4 flex items-center justify-between sticky top-0 z-40">
-                <Link href="/dashboard" className="font-serif text-xl font-black text-[#2D6A4F] tracking-tight">
+            <nav className="bg-[#FEFAE0]/85 backdrop-blur-md border-b border-[#2D6A4F]/10 px-4 sm:px-6 py-4 flex items-center justify-between sticky top-0 z-40">
+                <Link href="/dashboard" className="font-serif text-lg sm:text-xl font-black text-[#2D6A4F] tracking-tight">
                     Fridge<span className="text-[#774936]">To</span>Fork
                 </Link>
-                <div className="flex items-center gap-5">
+                <div className="flex items-center gap-3 sm:gap-5">
                     <span className="text-sm text-[#7A7A6E] hidden sm:inline">
                         Hey, {session?.user?.name?.split(" ")[0]} 👋
                     </span>
                     <Link
                         href="/my-recipes"
-                        className="text-sm text-[#7A7A6E] hover:text-[#2D6A4F] transition"
+                        className="text-sm text-[#7A7A6E] hover:text-[#2D6A4F] transition hidden sm:inline"
                     >
                         My Recipes
                     </Link>
                     <Link
                         href="/meal-plan"
-                        className="text-sm text-[#7A7A6E] hover:text-[#2D6A4F] transition"
+                        className="text-sm text-[#7A7A6E] hover:text-[#2D6A4F] transition hidden sm:inline"
                     >
                         Meal Plan
                     </Link>
@@ -113,19 +113,19 @@ export default function DashboardPage() {
                 </div>
             </nav>
 
-            <div className="max-w-2xl mx-auto px-6 py-12">
-                <div className="inline-flex items-center gap-2 bg-[#D8F3DC] text-[#2D6A4F] px-3 py-1 rounded-full text-xs font-medium mb-5 border border-[#52B788]/30">
+            <div className="max-w-2xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
+                <div className="inline-flex items-center gap-2 bg-[#D8F3DC] text-[#2D6A4F] px-3 py-1 rounded-full text-xs font-medium mb-4 border border-[#52B788]/30">
                     ✦ AI-Powered Meal Planning
                 </div>
-                <h2 className="font-serif text-4xl md:text-5xl font-black text-[#1B1B1B] tracking-tight mb-2">
+                <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-black text-[#1B1B1B] tracking-tight mb-2">
                     What's in your fridge?
                 </h2>
-                <p className="text-[#7A7A6E] text-base mb-10 font-light">
+                <p className="text-[#7A7A6E] text-base mb-8 sm:mb-10 font-light">
                     Add your ingredients and we'll generate recipes you can make right now.
                 </p>
 
                 {/* Ingredient Input */}
-                <div className="bg-white rounded-2xl border border-black/5 shadow-sm p-6 mb-5">
+                <div className="bg-white rounded-2xl border border-black/5 shadow-sm p-4 sm:p-6 mb-5">
                     <label className="text-xs font-medium text-[#7A7A6E] uppercase tracking-widest block mb-3">
                         Add ingredients
                     </label>
@@ -135,12 +135,12 @@ export default function DashboardPage() {
                             value={input}
                             onChange={(e) => setInput(e.target.value)}
                             onKeyDown={handleKeyDown}
-                            placeholder="e.g. tomato, eggs, paneer..."
-                            className="flex-1 bg-[#FEFAE0]/60 border border-[#2D6A4F]/15 rounded-lg px-4 py-2.5 text-sm placeholder:text-[#7A7A6E]/60 focus:outline-none focus:ring-2 focus:ring-[#52B788] focus:border-transparent transition"
+                            placeholder="e.g. tomato, eggs..."
+                            className="flex-1 min-w-0 bg-[#FEFAE0]/60 border border-[#2D6A4F]/15 rounded-lg px-3 sm:px-4 py-2.5 text-sm placeholder:text-[#7A7A6E]/60 focus:outline-none focus:ring-2 focus:ring-[#52B788] focus:border-transparent transition"
                         />
                         <button
                             onClick={addIngredient}
-                            className="bg-[#2D6A4F] hover:bg-[#1e5038] text-white px-5 py-2.5 rounded-lg text-sm font-medium transition shadow-md shadow-[#2D6A4F]/20"
+                            className="bg-[#2D6A4F] hover:bg-[#1e5038] text-white px-4 sm:px-5 py-2.5 rounded-lg text-sm font-medium transition shadow-md shadow-[#2D6A4F]/20 flex-shrink-0"
                         >
                             Add
                         </button>
@@ -170,11 +170,11 @@ export default function DashboardPage() {
                 </div>
 
                 {/* Preferences */}
-                <div className="bg-white rounded-2xl border border-black/5 shadow-sm p-6 mb-6">
+                <div className="bg-white rounded-2xl border border-black/5 shadow-sm p-4 sm:p-6 mb-6">
                     <h3 className="text-xs font-medium text-[#7A7A6E] uppercase tracking-widest mb-4">
                         Your preferences
                     </h3>
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-2 sm:grid-cols-2 gap-3 sm:gap-4">
                         <div>
                             <label className="text-xs text-[#7A7A6E] block mb-1.5">Diet</label>
                             <select

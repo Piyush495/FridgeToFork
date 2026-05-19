@@ -89,15 +89,15 @@ export default function MealPlanPage() {
     return (
         <main className="min-h-screen bg-[#FEFAE0]">
             {/* Navbar */}
-            <nav className="bg-[#FEFAE0]/85 backdrop-blur-md border-b border-[#2D6A4F]/10 px-6 py-4 flex items-center justify-between sticky top-0 z-40">
-                <Link href="/dashboard" className="font-serif text-xl font-black text-[#2D6A4F] tracking-tight">
+            <nav className="bg-[#FEFAE0]/85 backdrop-blur-md border-b border-[#2D6A4F]/10 px-4 sm:px-6 py-4 flex items-center justify-between sticky top-0 z-40">
+                <Link href="/dashboard" className="font-serif text-lg sm:text-xl font-black text-[#2D6A4F] tracking-tight">
                     Fridge<span className="text-[#774936]">To</span>Fork
                 </Link>
-                <div className="flex items-center gap-5">
-                    <Link href="/dashboard" className="text-sm text-[#7A7A6E] hover:text-[#2D6A4F] transition">
+                <div className="flex items-center gap-3 sm:gap-5">
+                    <Link href="/dashboard" className="text-sm text-[#7A7A6E] hover:text-[#2D6A4F] transition hidden sm:inline">
                         Dashboard
                     </Link>
-                    <Link href="/my-recipes" className="text-sm text-[#7A7A6E] hover:text-[#2D6A4F] transition">
+                    <Link href="/my-recipes" className="text-sm text-[#7A7A6E] hover:text-[#2D6A4F] transition hidden sm:inline">
                         My Recipes
                     </Link>
                     <button
@@ -109,10 +109,10 @@ export default function MealPlanPage() {
                 </div>
             </nav>
 
-            <div className="max-w-2xl mx-auto px-6 py-12">
-                <div className="flex items-center justify-between mb-2">
-                    <h2 className="font-serif text-4xl md:text-5xl font-black text-[#1B1B1B] tracking-tight">Weekly Meal Plan</h2>
-                    <span className="text-sm text-[#7A7A6E]">{filledDays}/7 days planned</span>
+            <div className="max-w-2xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
+                <div className="flex items-center justify-between mb-2 gap-3">
+                    <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-black text-[#1B1B1B] tracking-tight">Weekly Meal Plan</h2>
+                    <span className="text-sm text-[#7A7A6E] flex-shrink-0">{filledDays}/7 planned</span>
                 </div>
                 <p className="text-[#7A7A6E] text-base mb-8 font-light">
                     Assign saved recipes to each day of the week.
@@ -133,7 +133,7 @@ export default function MealPlanPage() {
                         {plan.map((dayPlan) => (
                             <div
                                 key={dayPlan.day}
-                                className="bg-white rounded-2xl border border-black/5 shadow-sm p-5 hover:shadow-md transition-shadow"
+                                className="bg-white rounded-2xl border border-black/5 shadow-sm p-4 sm:p-5 hover:shadow-md transition-shadow"
                             >
                                 <div className="flex items-center justify-between flex-wrap gap-3">
                                     <div className="flex items-center gap-3 flex-wrap">
@@ -141,7 +141,7 @@ export default function MealPlanPage() {
                                             {dayPlan.day}
                                         </span>
                                         {dayPlan.recipeName ? (
-                                            <span className="text-sm font-medium text-[#2D6A4F] bg-[#D8F3DC] px-3 py-1 rounded-full border border-[#52B788]/30">
+                                            <span className="text-sm font-medium text-[#2D6A4F] bg-[#D8F3DC] px-3 py-1 rounded-full border border-[#52B788]/30 truncate max-w-[160px] sm:max-w-none">
                                                 {dayPlan.recipeName}
                                             </span>
                                         ) : (
@@ -209,8 +209,8 @@ export default function MealPlanPage() {
 
                 {/* Shopping list CTA */}
                 {filledDays >= 3 && (
-                    <div className="mt-8 bg-[#2D6A4F] rounded-3xl p-8 text-center relative overflow-hidden">
-                        <p className="font-serif text-2xl font-black text-white tracking-tight mb-2">
+                    <div className="mt-8 bg-[#2D6A4F] rounded-3xl p-6 sm:p-8 text-center relative overflow-hidden">
+                        <p className="font-serif text-xl sm:text-2xl font-black text-white tracking-tight mb-2">
                             🛒 Ready to generate your shopping list?
                         </p>
                         <p className="text-white/70 text-sm mb-6 font-light">
@@ -218,7 +218,7 @@ export default function MealPlanPage() {
                         </p>
                         <Link
                             href="/shopping-list"
-                            className="inline-block bg-white text-[#2D6A4F] px-8 py-3 rounded-full font-medium hover:-translate-y-0.5 hover:shadow-xl transition-all"
+                            className="inline-block bg-white text-[#2D6A4F] px-6 sm:px-8 py-3 rounded-full font-medium hover:-translate-y-0.5 hover:shadow-xl transition-all text-sm"
                         >
                             Generate shopping list
                         </Link>

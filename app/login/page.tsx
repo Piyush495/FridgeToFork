@@ -105,12 +105,12 @@ function LoginForm() {
 
 export default function LoginPage() {
   return (
-    <main className="min-h-screen flex items-center justify-center bg-[#FEFAE0] px-6 relative overflow-hidden">
-      <div className="absolute inset-0 pointer-events-none">
+    <main className="min-h-screen flex items-center justify-center bg-[#FEFAE0] px-4 sm:px-6 py-8 relative overflow-hidden">
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
         {["🥦", "🍳", "🧅", "🍅", "🥕", "🌿"].map((e, i) => (
           <span
             key={i}
-            className="absolute text-4xl opacity-15"
+            className="absolute text-2xl sm:text-4xl opacity-10 sm:opacity-15"
             style={{
               top: `${[15, 25, 70, 80, 55, 10][i]}%`,
               left: i % 2 === 0 ? `${[5, 3, 12][Math.floor(i / 2)]}%` : undefined,

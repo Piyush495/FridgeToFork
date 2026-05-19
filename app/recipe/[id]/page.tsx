@@ -53,15 +53,15 @@ export default function RecipePage() {
     if (loading) {
         return (
             <main className="min-h-screen bg-[#FEFAE0]">
-                <nav className="bg-[#FEFAE0]/85 backdrop-blur-md border-b border-[#2D6A4F]/10 px-6 py-4 flex items-center justify-between sticky top-0 z-40">
-                    <Link href="/dashboard" className="font-serif text-xl font-black text-[#2D6A4F] tracking-tight">
+                <nav className="bg-[#FEFAE0]/85 backdrop-blur-md border-b border-[#2D6A4F]/10 px-4 sm:px-6 py-4 flex items-center justify-between sticky top-0 z-40">
+                    <Link href="/dashboard" className="font-serif text-lg sm:text-xl font-black text-[#2D6A4F] tracking-tight">
                         Fridge<span className="text-[#774936]">To</span>Fork
                     </Link>
                     <Link href="/dashboard" className="text-sm text-[#7A7A6E] hover:text-[#2D6A4F] transition">
-                        ← Back to dashboard
+                        ← Back
                     </Link>
                 </nav>
-                <div className="max-w-2xl mx-auto px-6 py-12">
+                <div className="max-w-2xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
                     <SkeletonRecipeDetail />
                 </div>
             </main>
@@ -73,23 +73,23 @@ export default function RecipePage() {
     return (
         <main className="min-h-screen bg-[#FEFAE0]">
             {/* Navbar */}
-            <nav className="bg-[#FEFAE0]/85 backdrop-blur-md border-b border-[#2D6A4F]/10 px-6 py-4 flex items-center justify-between sticky top-0 z-40">
-                <Link href="/dashboard" className="font-serif text-xl font-black text-[#2D6A4F] tracking-tight">
+            <nav className="bg-[#FEFAE0]/85 backdrop-blur-md border-b border-[#2D6A4F]/10 px-4 sm:px-6 py-4 flex items-center justify-between sticky top-0 z-40">
+                <Link href="/dashboard" className="font-serif text-lg sm:text-xl font-black text-[#2D6A4F] tracking-tight">
                     Fridge<span className="text-[#774936]">To</span>Fork
                 </Link>
                 <Link
                     href="/dashboard"
                     className="text-sm text-[#7A7A6E] hover:text-[#2D6A4F] transition"
                 >
-                    ← Back to dashboard
+                    ← Back
                 </Link>
             </nav>
 
-            <div className="max-w-2xl mx-auto px-6 py-12">
+            <div className="max-w-2xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
                 {/* Header */}
-                <div className="bg-white rounded-2xl border border-black/5 shadow-sm p-6 mb-5">
+                <div className="bg-white rounded-2xl border border-black/5 shadow-sm p-4 sm:p-6 mb-5">
                     <div className="flex items-start justify-between mb-4 gap-3">
-                        <h2 className="font-serif text-3xl md:text-4xl font-black text-[#1B1B1B] tracking-tight leading-tight">{recipe.name}</h2>
+                        <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-black text-[#1B1B1B] tracking-tight leading-tight">{recipe.name}</h2>
                         <span className="text-xs bg-[#D8F3DC] text-[#2D6A4F] px-3 py-1.5 rounded-full border border-[#52B788]/30 flex-shrink-0 font-medium">
                             {recipe.cuisineType}
                         </span>
@@ -118,7 +118,7 @@ export default function RecipePage() {
                 </div>
 
                 {/* Ingredients */}
-                <div className="bg-white rounded-2xl border border-black/5 shadow-sm p-6 mb-5">
+                <div className="bg-white rounded-2xl border border-black/5 shadow-sm p-4 sm:p-6 mb-5">
                     <h3 className="font-serif text-xl font-bold text-[#1B1B1B] mb-4">
                         Ingredients
                     </h3>
@@ -139,7 +139,7 @@ export default function RecipePage() {
                 </div>
 
                 {/* Steps */}
-                <div className="bg-white rounded-2xl border border-black/5 shadow-sm p-6">
+                <div className="bg-white rounded-2xl border border-black/5 shadow-sm p-4 sm:p-6">
                     <h3 className="font-serif text-xl font-bold text-[#1B1B1B] mb-4">
                         Instructions
                     </h3>

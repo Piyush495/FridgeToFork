@@ -50,20 +50,20 @@ export default function MyRecipesPage() {
     return (
         <main className="min-h-screen bg-[#FEFAE0]">
             {/* Navbar */}
-            <nav className="bg-[#FEFAE0]/85 backdrop-blur-md border-b border-[#2D6A4F]/10 px-6 py-4 flex items-center justify-between sticky top-0 z-40">
-                <Link href="/dashboard" className="font-serif text-xl font-black text-[#2D6A4F] tracking-tight">
+            <nav className="bg-[#FEFAE0]/85 backdrop-blur-md border-b border-[#2D6A4F]/10 px-4 sm:px-6 py-4 flex items-center justify-between sticky top-0 z-40">
+                <Link href="/dashboard" className="font-serif text-lg sm:text-xl font-black text-[#2D6A4F] tracking-tight">
                     Fridge<span className="text-[#774936]">To</span>Fork
                 </Link>
-                <div className="flex items-center gap-5">
+                <div className="flex items-center gap-3 sm:gap-5">
                     <Link
                         href="/dashboard"
-                        className="text-sm text-[#7A7A6E] hover:text-[#2D6A4F] transition"
+                        className="text-sm text-[#7A7A6E] hover:text-[#2D6A4F] transition hidden sm:inline"
                     >
                         Dashboard
                     </Link>
                     <Link
                         href="/meal-plan"
-                        className="text-sm text-[#7A7A6E] hover:text-[#2D6A4F] transition"
+                        className="text-sm text-[#7A7A6E] hover:text-[#2D6A4F] transition hidden sm:inline"
                     >
                         Meal Plan
                     </Link>
@@ -76,10 +76,10 @@ export default function MyRecipesPage() {
                 </div>
             </nav>
 
-            <div className="max-w-2xl mx-auto px-6 py-12">
-                <div className="flex items-center justify-between mb-2">
-                    <h2 className="font-serif text-4xl md:text-5xl font-black text-[#1B1B1B] tracking-tight">My Recipes</h2>
-                    <span className="text-sm text-[#7A7A6E]">{filtered.length} saved</span>
+            <div className="max-w-2xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
+                <div className="flex items-center justify-between mb-2 gap-3">
+                    <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-black text-[#1B1B1B] tracking-tight">My Recipes</h2>
+                    <span className="text-sm text-[#7A7A6E] flex-shrink-0">{filtered.length} saved</span>
                 </div>
                 <p className="text-[#7A7A6E] text-base mb-8 font-light">
                     All your saved recipes in one place.
