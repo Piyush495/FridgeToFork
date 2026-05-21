@@ -10,8 +10,17 @@ export function buildRecipePrompt(
     prefs: Preferences
 ): string {
     return `
-You are a professional chef assistant.
-Generate exactly 3 recipes using ONLY these ingredients: ${ingredients.join(", ")}.
+You are a professional chef assistant. Your first job is to validate the ingredients list.
+
+VALIDATION RULES (check these BEFORE generating any recipes):
+1. Every item in the list must be a real, commonly known, edible food ingredient.
+2. If ANY ingredient is a non-food item (e.g. metal, plastic, wood, a body part, a cuss word,
+   a random object, a chemical, or anything that is not safe to eat), do NOT generate recipes.
+   Instead, respond with ONLY this JSON — no other text:
+   [{"error": "invalid_ingredients", "message": "One or more ingredients are not real food items. Please enter only edible ingredients."}]
+
+If ALL ingredients are valid edible food items, generate exactly 3 recipes using ONLY:
+${ingredients.join(", ")}
 
 User preferences:
 - Diet: ${prefs.diet}
@@ -23,7 +32,7 @@ You can assume the user has basic pantry staples like salt, pepper, oil, and wat
 
 Respond ONLY with a valid JSON array. No explanations, no markdown, no code fences.
 
-Format:
+Format for valid ingredients:
 [
   {
     "name": "Recipe Name",

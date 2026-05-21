@@ -19,12 +19,13 @@ export async function POST(req: Request) {
 
     if (!ingredients || ingredients.length === 0) {
       return NextResponse.json(
-        { error: "No ingredients provided" },
+        { error: "No ingredients provided." },
         { status: 400 }
       );
     }
+
     // Rate limiting — max 10 generations per day
-    const today = new Date().toISOString().split("T")[0]; // "2025-01-15"
+    const today = new Date().toISOString().split("T")[0];
 
     await connectDB();
     const user = await User.findOne({ email: session.user.email });
@@ -42,10 +43,7 @@ export async function POST(req: Request) {
       user.lastGenerationDate = today;
     }
 
-    // Increment count
-    user.dailyGenerations += 1;
-    await user.save();
-
+    // ── Let the AI validate ingredients and generate recipes ──
     const prompt = buildRecipePrompt(ingredients, prefs);
 
     const result = await client.chat.completions.create({
@@ -57,11 +55,27 @@ export async function POST(req: Request) {
 
     // Strip code fences just in case
     const clean = text.replace(/```json|```/g, "").trim();
-    const recipes = JSON.parse(clean);
+    const parsed = JSON.parse(clean);
 
-    await connectDB();
+    // If the AI detected non-food / invalid ingredients, return error
+    // WITHOUT counting this attempt toward the daily limit.
+    if (
+      Array.isArray(parsed) &&
+      parsed.length === 1 &&
+      parsed[0]?.error === "invalid_ingredients"
+    ) {
+      return NextResponse.json(
+        { error: parsed[0].message ?? "One or more ingredients are not valid food items. Please enter only real, edible ingredients." },
+        { status: 400 }
+      );
+    }
+
+    // All good — now increment the daily counter and save recipes
+    user.dailyGenerations += 1;
+    await user.save();
+
     const saved = await Recipe.insertMany(
-      recipes.map((r: any) => ({
+      parsed.map((r: any) => ({
         ...r,
         userId: session.user.email,
         isSaved: false,
@@ -78,3 +92,4 @@ export async function POST(req: Request) {
     );
   }
 }
+
