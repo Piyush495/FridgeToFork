@@ -33,7 +33,7 @@ export default function DashboardPage() {
 
     useEffect(() => {
         const fetchGenerationsLeft = async () => {
-            const res = await fetch("/api/user/generations-left");
+            const res = await fetch("/api/user");
             const data = await res.json();
             setGenerationsLeft(data.generationsLeft);
         };
