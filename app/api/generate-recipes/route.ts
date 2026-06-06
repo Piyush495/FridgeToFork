@@ -30,6 +30,13 @@ export async function POST(req: Request) {
     await connectDB();
     const user = await User.findOne({ email: session.user.email });
 
+    if(!user) {
+      return NextResponse.json(
+        {error:"User not found"},
+        {status:404}
+      )
+    }
+
     if (user.lastGenerationDate === today && user.dailyGenerations >= 10) {
       return NextResponse.json(
         { error: "Daily limit reached. You can generate up to 10 recipes per day." },
@@ -92,4 +99,4 @@ export async function POST(req: Request) {
     );
   }
 }
-
+

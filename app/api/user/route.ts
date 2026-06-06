@@ -14,6 +14,13 @@ export async function GET() {
         const user = await User.findOne({ email: session.user.email });
         const today = new Date().toISOString().split("T")[0];
 
+        if(!user) {
+            return NextResponse.json(
+                {error:"User not found"},
+                {status:404}
+            )
+        }
+
         const generationsLeft =
             user.lastGenerationDate === today
                 ? Math.max(0, 10 - user.dailyGenerations)
