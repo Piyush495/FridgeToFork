@@ -50,7 +50,6 @@ export async function POST(req: Request) {
       user.lastGenerationDate = today;
     }
 
-    // ── Let the AI validate ingredients and generate recipes ──
     const prompt = buildRecipePrompt(ingredients, prefs);
 
     const result = await client.chat.completions.create({
@@ -60,10 +59,12 @@ export async function POST(req: Request) {
 
     const text = result.choices[0].message.content || "";
 
-    // Strip code fences just in case
+    // Strip code fences
     const clean = text.replace(/```json|```/g, "").trim();
-    const parsed = JSON.parse(clean);
-
+    try {
+      const parsed = JSON.parse(clean);
+     
+    
     // If the AI detected non-food / invalid ingredients, return error
     // WITHOUT counting this attempt toward the daily limit.
     if (
@@ -91,6 +92,12 @@ export async function POST(req: Request) {
     );
 
     return NextResponse.json({ recipes: saved });
+  }catch (error) {
+      return NextResponse.json(
+        {error:"Couldn't parse recipes, please try again"},
+        {status:500}
+      )
+    }
   } catch (error) {
     console.error("Recipe generation error:", error);
     return NextResponse.json(
