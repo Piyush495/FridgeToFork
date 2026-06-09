@@ -23,6 +23,20 @@ export async function POST(req: Request) {
         { status: 400 }
       );
     }
+    if(ingredients.length>20){
+      return NextResponse.json(
+        {error:"Only 20 ingredients are allowed"},
+        {status:400}
+      )
+    }
+    for(const element of ingredients) {
+      if(element.length>50){
+        return NextResponse.json(
+          {error:"Each ingredient must be less than 50 characters"},
+          {status:400}
+        );
+      }
+    }
 
     // Rate limiting — max 10 generations per day
     const today = new Date().toISOString().split("T")[0];
