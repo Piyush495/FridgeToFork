@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useSession, signOut } from "next-auth/react";
 import Link from "next/link";
 import { SkeletonCard } from "@/components/Skeleton";
+import toast from "react-hot-toast";
 
 interface Recipe {
     _id: string;
@@ -42,7 +43,11 @@ export default function DashboardPage() {
 
     const addIngredient = () => {
         const trimmed = input.trim().toLowerCase();
-        if (!trimmed || ingredients.includes(trimmed)) return;
+        if (!trimmed) return;
+        if(ingredients.includes(trimmed)){
+            toast.error("Ingredient already added");
+            return;
+        }
         setIngredients([...ingredients, trimmed]);
         setInput("");
     };
