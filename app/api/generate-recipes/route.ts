@@ -5,6 +5,7 @@ import { connectDB } from "@/lib/db";
 import Recipe from "@/models/Recipe";
 import { buildRecipePrompt } from "@/lib/buildRecipePrompt";
 import User from "@/models/User";
+import {DAILY_GENERATION_LIMIT} from "@/lib/constants"
 
 const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
@@ -51,9 +52,9 @@ export async function POST(req: Request) {
       )
     }
 
-    if (user.lastGenerationDate === today && user.dailyGenerations >= 10) {
+    if (user.lastGenerationDate === today && user.dailyGenerations >= DAILY_GENERATION_LIMIT) {
       return NextResponse.json(
-        { error: "Daily limit reached. You can generate up to 10 recipes per day." },
+        { error: `Daily limit reached. You can generate up to ${DAILY_GENERATION_LIMIT} recipes per day.` },
         { status: 429 }
       );
     }

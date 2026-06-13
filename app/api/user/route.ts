@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { connectDB } from "@/lib/db";
 import User from "@/models/User";
+import {DAILY_GENERATION_LIMIT} from "@/lib/constants"
 
 export async function GET() {
     try {
@@ -23,8 +24,8 @@ export async function GET() {
 
         const generationsLeft =
             user.lastGenerationDate === today
-                ? Math.max(0, 10 - user.dailyGenerations)
-                : 10;
+                ? Math.max(0, DAILY_GENERATION_LIMIT - user.dailyGenerations)
+                : DAILY_GENERATION_LIMIT;
 
         return NextResponse.json({ generationsLeft });
     } catch (error) {

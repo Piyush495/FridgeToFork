@@ -1,0 +1,1 @@
+export const DAILY_GENERATION_LIMIT:number=10;
