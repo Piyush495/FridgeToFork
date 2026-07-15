@@ -46,7 +46,7 @@ function LoginForm() {
   };
 
   return (
-    <div className="w-full max-w-[440px] bg-white p-6 sm:p-10 rounded-[28px] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-[#2D6A4F]/10">
+    <div className="w-full max-w-[440px] bg-white p-6 sm:p-10 rounded-[28px] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-[#2D6A4F]/10 lg:mt-4">
       <div className="text-center mb-8">
         <h2 className="text-2xl sm:text-3xl font-bold text-[#1B1B1B] tracking-tight mb-2">Sign in to your account</h2>
         <p className="text-[#7A7A6E] text-sm font-normal">
@@ -196,14 +196,14 @@ export default function LoginPage() {
   return (
     <main className="min-h-screen w-full lg:grid lg:grid-cols-2 relative overflow-hidden bg-gradient-to-tr from-[#F4F9F4] via-white to-[#EAF5EB]">
       {/* Brand Column (Desktop only) */}
-      <div className="hidden lg:flex flex-col justify-between pl-12 xl:pl-20 pr-16 xl:pr-20 py-12 relative bg-[#F4F9F4]/45 border-r border-[#2D6A4F]/5 overflow-hidden">
+      <div className="hidden lg:flex flex-col pl-12 xl:pl-20 pr-16 xl:pr-20 pt-28 pb-12 relative bg-[#EFF7EF] border-r border-[#2D6A4F]/15 overflow-hidden">
         {/* Right-shifted container within the left column */}
-        <div className="flex-grow flex flex-col justify-between max-w-[420px] w-full ml-auto">
+        <div className="flex flex-col max-w-[420px] w-full ml-auto">
           {/* Content wrapper */}
-          <div className="flex flex-col gap-10 mt-6 select-none">
+          <div className="flex flex-col gap-10 select-none">
             {/* Logo */}
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 text-[#2D6A4F]">
+              <div className="w-14 h-14 text-[#2D6A4F]">
                 <svg viewBox="0 0 64 64" fill="none" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
                   <rect x="10" y="12" width="18" height="38" rx="4" stroke="currentColor" strokeWidth="3" fill="none"/>
                   <line x1="10" y1="27" x2="28" y2="27" stroke="currentColor" strokeWidth="3"/>
@@ -215,17 +215,17 @@ export default function LoginPage() {
                   <path d="M49 34L52 23C52.5 21.5 54.5 23 53.5 24.5L50.5 32" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
               </div>
-              <span className="font-serif text-2xl font-black text-[#2D6A4F] tracking-tight">
+              <span className="font-serif text-4xl font-black text-[#2D6A4F] tracking-tight">
                 FridgeToFork
               </span>
             </div>
 
             {/* Welcome Header */}
             <div className="space-y-3">
-              <h1 className="font-serif text-4xl font-black text-[#1B1B1B] leading-tight">
+              <h1 className="font-serif text-5xl font-black text-[#1B1B1B] leading-tight">
                 Welcome back! 👋
               </h1>
-              <p className="text-[#7A7A6E] text-base font-normal max-w-sm">
+              <p className="text-[#7A7A6E] text-lg font-normal max-w-sm">
                 Sign in to discover recipes from the ingredients you already have.
               </p>
             </div>
@@ -234,89 +234,51 @@ export default function LoginPage() {
             <div className="space-y-6 max-w-sm">
               {/* Feature 1 */}
               <div className="flex gap-4">
-                <div className="w-12 h-12 rounded-full bg-[#E8F5E9] text-[#2D6A4F] flex items-center justify-center flex-shrink-0">
+                <div className="w-12 h-12 rounded-full bg-[#D8F3DC] text-[#2D6A4F] flex items-center justify-center flex-shrink-0">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-5 h-5">
                     <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 3.5 1 9.2A7 7 0 0 1 11 20z" />
                     <path d="M19 2c-2.26 4.33-5.27 7.14-8 10" />
                   </svg>
                 </div>
                 <div>
-                  <h3 className="font-bold text-sm text-[#1B1B1B]">Smart Recipe Suggestions</h3>
-                  <p className="text-xs text-[#7A7A6E] mt-0.5">Get personalized recipes based on what's in your fridge.</p>
+                  <h3 className="font-bold text-base text-[#1B1B1B]">Smart Recipe Suggestions</h3>
+                  <p className="text-sm text-[#7A7A6E] mt-0.5">Get personalized recipes based on what's in your fridge.</p>
                 </div>
               </div>
 
               {/* Feature 2 */}
               <div className="flex gap-4">
-                <div className="w-12 h-12 rounded-full bg-[#E8F5E9] text-[#2D6A4F] flex items-center justify-center flex-shrink-0">
+                <div className="w-12 h-12 rounded-full bg-[#D8F3DC] text-[#2D6A4F] flex items-center justify-center flex-shrink-0">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-5 h-5">
                     <circle cx="12" cy="12" r="10" />
                     <polyline points="12 6 12 12 16 14" />
                   </svg>
                 </div>
                 <div>
-                  <h3 className="font-bold text-sm text-[#1B1B1B]">Save Time & Reduce Waste</h3>
-                  <p className="text-xs text-[#7A7A6E] mt-0.5">Make the most of your ingredients and time.</p>
+                  <h3 className="font-bold text-base text-[#1B1B1B]">Save Time & Reduce Waste</h3>
+                  <p className="text-sm text-[#7A7A6E] mt-0.5">Make the most of your ingredients and time.</p>
                 </div>
               </div>
 
               {/* Feature 3 */}
               <div className="flex gap-4">
-                <div className="w-12 h-12 rounded-full bg-[#E8F5E9] text-[#2D6A4F] flex items-center justify-center flex-shrink-0">
+                <div className="w-12 h-12 rounded-full bg-[#D8F3DC] text-[#2D6A4F] flex items-center justify-center flex-shrink-0">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-5 h-5">
                     <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
                   </svg>
                 </div>
                 <div>
-                  <h3 className="font-bold text-sm text-[#1B1B1B]">Eat Better, Every Day</h3>
-                  <p className="text-xs text-[#7A7A6E] mt-0.5">Healthy, delicious meals tailored just for you.</p>
+                  <h3 className="font-bold text-base text-[#1B1B1B]">Eat Better, Every Day</h3>
+                  <p className="text-sm text-[#7A7A6E] mt-0.5">Healthy, delicious meals tailored just for you.</p>
                 </div>
               </div>
             </div>
-          </div>
-
-          {/* Aesthetic Plant Pot Vector */}
-          <div className="mt-auto -ml-8 -mb-12 pointer-events-none select-none relative z-10 overflow-visible flex justify-start">
-            <svg viewBox="0 0 200 300" fill="none" className="w-48 h-72 text-[#2D6A4F] filter drop-shadow-[0_8px_16px_rgba(0,0,0,0.04)]" xmlns="http://www.w3.org/2000/svg">
-              {/* Soil */}
-              <ellipse cx="100" cy="220" rx="55" ry="8" fill="#78593E"/>
-              
-              {/* Plant stems and leaves */}
-              {/* Stem 1 */}
-              <path d="M90 220 Q60 140 30 110" stroke="#2D6A4F" strokeWidth="3" strokeLinecap="round" fill="none"/>
-              <path d="M30 110 C20 100 25 80 40 90 C50 95 40 110 30 110 Z" fill="#52B788"/>
-              <path d="M52 145 C42 135 48 120 60 130 C68 135 60 150 52 145 Z" fill="#2D6A4F"/>
-              <path d="M70 180 C60 170 68 155 78 165 C85 170 78 185 70 180 Z" fill="#52B788"/>
-
-              {/* Stem 2 */}
-              <path d="M110 220 Q140 130 170 80" stroke="#2D6A4F" strokeWidth="3" strokeLinecap="round" fill="none"/>
-              <path d="M170 80 C180 70 185 90 170 100 C155 110 160 90 170 80 Z" fill="#2D6A4F"/>
-              <path d="M148 130 C158 120 162 140 148 150 C135 160 138 140 148 130 Z" fill="#52B788"/>
-              <path d="M128 175 C138 165 142 185 128 195 C115 205 118 185 128 175 Z" fill="#2D6A4F"/>
-
-              {/* Stem 3 (left-leaning low) */}
-              <path d="M80 220 Q40 180 20 160" stroke="#2D6A4F" strokeWidth="2.5" strokeLinecap="round" fill="none"/>
-              <path d="M20 160 C10 150 15 130 30 140 C40 145 30 165 20 160 Z" fill="#52B788"/>
-              <path d="M48 190 C38 180 42 165 52 170 C60 175 55 195 48 190 Z" fill="#2D6A4F"/>
-
-              {/* Stem 4 (right-leaning low) */}
-              <path d="M120 220 Q160 190 180 170" stroke="#2D6A4F" strokeWidth="2.5" strokeLinecap="round" fill="none"/>
-              <path d="M180 170 C190 160 195 180 180 190 C165 200 170 180 180 170 Z" fill="#52B788"/>
-              <path d="M150 195 C160 185 165 205 150 215 C135 225 140 205 150 195 Z" fill="#2D6A4F"/>
-
-              {/* Center small leaves */}
-              <path d="M100 220 C90 200 95 180 105 190 C115 195 110 215 100 220 Z" fill="#74C69D"/>
-
-              {/* The White Pot (drawn on top of soil/stem bases) */}
-              <path d="M50 220 L65 295 C66 300 70 304 75 304 L125 304 C130 304 134 300 135 295 L150 220 Z" fill="#FFFFFF" stroke="#E2E8F0" strokeWidth="2"/>
-              <ellipse cx="100" cy="220" rx="50" ry="8" fill="#FFFFFF" stroke="#E2E8F0" strokeWidth="2"/>
-            </svg>
           </div>
         </div>
       </div>
 
       {/* Form Column */}
-      <div className="flex flex-col items-center lg:items-start justify-center px-4 sm:px-12 lg:pl-16 xl:pl-20 py-12 relative min-h-screen">
+      <div className="flex flex-col items-center lg:items-start px-4 sm:px-12 lg:pl-16 xl:pl-20 pt-20 pb-12 relative min-h-screen">
         <div className="lg:hidden absolute inset-0 -z-10">
           <AuthBackground />
         </div>
@@ -344,14 +306,7 @@ export default function LoginPage() {
           <LoginForm />
         </Suspense>
 
-        {/* Footer copyright */}
-        <div className="absolute bottom-6 flex items-center gap-2 select-none">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 text-[#2D6A4F] fill-[#2D6A4F]">
-            <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 3.5 1 9.2A7 7 0 0 1 11 20z" />
-            <path d="M19 2c-2.26 4.33-5.27 7.14-8 10" />
-          </svg>
-          <span className="text-xs text-[#7A7A6E]">© {new Date().getFullYear()} FridgeToFork. All rights reserved.</span>
-        </div>
+
       </div>
     </main>
   );
