@@ -194,9 +194,9 @@ function LoginForm() {
 
 export default function LoginPage() {
   return (
-    <main className="min-h-screen w-full lg:grid lg:grid-cols-2 relative overflow-hidden bg-gradient-to-tr from-[#F4F9F4] via-white to-[#EAF5EB]">
+    <main className="min-h-screen lg:h-screen w-full lg:grid lg:grid-cols-2 relative overflow-hidden bg-gradient-to-tr from-[#F4F9F4] via-white to-[#EAF5EB]">
       {/* Brand Column (Desktop only) */}
-      <div className="hidden lg:flex flex-col pl-12 xl:pl-20 pr-16 xl:pr-20 pt-28 pb-12 relative bg-[#EFF7EF] border-r border-[#2D6A4F]/15 overflow-hidden">
+      <div className="hidden lg:flex flex-col justify-center pl-12 xl:pl-20 pr-16 xl:pr-20 py-8 relative bg-[#EFF7EF] border-r border-[#2D6A4F]/15 overflow-hidden h-full">
         {/* Right-shifted container within the left column */}
         <div className="flex flex-col max-w-[420px] w-full ml-auto">
           {/* Content wrapper */}
@@ -278,7 +278,7 @@ export default function LoginPage() {
       </div>
 
       {/* Form Column */}
-      <div className="flex flex-col items-center lg:items-start px-4 sm:px-12 lg:pl-16 xl:pl-20 pt-20 pb-12 relative min-h-screen">
+      <div className="flex flex-col justify-center items-center lg:items-start px-4 sm:px-12 lg:pl-16 xl:pl-20 py-8 relative min-h-screen lg:min-h-0 lg:h-full w-full overflow-y-auto lg:overflow-hidden">
         <div className="lg:hidden absolute inset-0 -z-10">
           <AuthBackground />
         </div>
