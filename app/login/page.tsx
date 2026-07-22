@@ -275,6 +275,11 @@ export default function LoginPage() {
             </div>
           </div>
         </div>
+
+        {/* Decorative Food Asset (Bottom Left) */}
+        <div className="absolute left-0 bottom-0 w-[380px] xl:w-[440px] pointer-events-none select-none z-0 mix-blend-multiply opacity-90 transform -translate-x-10 translate-y-8">
+          <img src="/auth-food.png" alt="Decorative ingredients" className="w-full h-auto object-contain" />
+        </div>
       </div>
 
       {/* Form Column */}

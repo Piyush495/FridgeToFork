@@ -30,35 +30,9 @@ export default function AuthBackground() {
 
 
 
-      {/* Blurred Leaf branch in the bottom-left foreground */}
-      <div className="absolute bottom-[-20px] left-[-20px] sm:bottom-[-40px] sm:left-[-40px] w-48 h-48 sm:w-64 sm:h-64 text-[#2D6A4F]/25 blur-[1.5px] select-none pointer-events-none transform -rotate-12">
-        <svg viewBox="0 0 100 100" fill="currentColor" className="w-full h-full">
-          {/* Main stem */}
-          <path
-            d="M10 90 C 25 75, 45 65, 75 55"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2.5"
-            strokeLinecap="round"
-          />
-          {/* Leaves */}
-          {/* Leaf 1 */}
-          <path d="M22 80 C 15 72, 18 62, 28 72 C 32 76, 28 82, 22 80 Z" />
-          {/* Leaf 2 */}
-          <path d="M35 73 C 28 63, 33 55, 41 65 C 45 69, 41 75, 35 73 Z" />
-          {/* Leaf 3 */}
-          <path d="M48 67 C 42 55, 48 48, 55 58 C 58 62, 54 68, 48 67 Z" />
-          {/* Leaf 4 */}
-          <path d="M62 61 C 58 48, 65 42, 70 52 C 72 56, 68 62, 62 61 Z" />
-          
-          {/* Opposite leaves */}
-          {/* Leaf 5 */}
-          <path d="M25 84 C 32 88, 38 80, 32 74 C 28 70, 22 78, 25 84 Z" />
-          {/* Leaf 6 */}
-          <path d="M38 77 C 46 80, 50 72, 44 66 C 40 62, 34 71, 38 77 Z" />
-          {/* Leaf 7 */}
-          <path d="M51 71 C 60 73, 63 65, 57 59 C 53 55, 47 64, 51 71 Z" />
-        </svg>
+      {/* Food decor asset in bottom-left */}
+      <div className="absolute bottom-0 left-0 w-64 sm:w-80 pointer-events-none select-none z-0 mix-blend-multiply opacity-80 transform -translate-x-8 translate-y-4">
+        <img src="/auth-food.png" alt="Decorative ingredients" className="w-full h-auto object-contain" />
       </div>
     </div>
   );
