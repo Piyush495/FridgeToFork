@@ -28,3 +28,32 @@ export async function GET(
         );
     }
 }
+
+export async function DELETE(
+    req: Request,
+    { params }: { params: { id: string } }
+) {
+    try {
+        const session = await getServerSession();
+        if (!session?.user?.email) {
+            return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+        }
+
+        await connectDB();
+        const recipe = await Recipe.findOneAndDelete({
+            _id: params.id,
+            userId: session.user.email,
+        });
+
+        if (!recipe) {
+            return NextResponse.json({ error: "Recipe not found" }, { status: 404 });
+        }
+
+        return NextResponse.json({ success: true, message: "Recipe deleted" });
+    } catch (error) {
+        return NextResponse.json(
+            { error: "Failed to delete recipe" },
+            { status: 500 }
+        );
+    }
+}
