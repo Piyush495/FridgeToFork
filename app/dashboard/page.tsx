@@ -457,7 +457,7 @@ export default function DashboardPage() {
 
             {/* Footer */}
             <footer className="border-t border-[#2D6A4F]/8 bg-white/50 px-4 sm:px-8 py-4">
-                <div className="max-w-6xl mx-auto flex items-center justify-between">
+                <div className="max-w-6xl mx-auto flex items-center justify-center">
                     <div className="flex items-center gap-2 select-none">
                         <div className="w-5 h-5 text-[#2D6A4F]">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full fill-[#2D6A4F]">
@@ -466,24 +466,6 @@ export default function DashboardPage() {
                             </svg>
                         </div>
                         <span className="text-xs text-[#7A7A6E]">© {new Date().getFullYear()} FridgeToFork. All rights reserved.</span>
-                    </div>
-                    <div className="hidden sm:flex items-center gap-3">
-                        {/* Avatar circles */}
-                        <div className="flex -space-x-2">
-                            {["#52B788", "#2D6A4F", "#74C69D", "#1B4332"].map((color, i) => (
-                                <div
-                                    key={i}
-                                    className="w-7 h-7 rounded-full border-2 border-white flex items-center justify-center text-white text-[10px] font-bold"
-                                    style={{ backgroundColor: color }}
-                                >
-                                    {["A", "K", "S", "M"][i]}
-                                </div>
-                            ))}
-                        </div>
-                        <span className="text-xs text-[#7A7A6E]">
-                            Trusted by <span className="font-semibold text-[#1B1B1B]">5,000+</span> home cooks
-                        </span>
-                        <span className="text-[#2D6A4F]">💚</span>
                     </div>
                 </div>
             </footer>
