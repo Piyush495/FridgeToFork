@@ -139,10 +139,11 @@ export default function RecipePage() {
                     </span>
                 </Link>
 
-                <div className="flex items-center gap-3 sm:gap-6">
+                <div className="flex items-center gap-2 sm:gap-4">
                     <Link
                         href="/dashboard"
-                        className="text-sm text-[#1B1B1B] hover:text-[#2D6A4F] transition hidden sm:flex items-center gap-1.5 font-medium"
+                        className="text-xs sm:text-sm text-[#1B1B1B] hover:text-[#2D6A4F] transition flex items-center gap-1.5 font-medium px-2 py-1 rounded-lg hover:bg-[#F4F9F4]"
+                        title="Dashboard"
                     >
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-4 h-4 text-[#2D6A4F]">
                             <rect x="3" y="3" width="7" height="7" rx="1" />
@@ -150,11 +151,12 @@ export default function RecipePage() {
                             <rect x="14" y="14" width="7" height="7" rx="1" />
                             <rect x="3" y="14" width="7" height="7" rx="1" />
                         </svg>
-                        Dashboard
+                        <span className="hidden sm:inline">Dashboard</span>
                     </Link>
                     <Link
                         href="/meal-plan"
-                        className="text-sm text-[#1B1B1B] hover:text-[#2D6A4F] transition hidden sm:flex items-center gap-1.5 font-medium"
+                        className="text-xs sm:text-sm text-[#1B1B1B] hover:text-[#2D6A4F] transition flex items-center gap-1.5 font-medium px-2 py-1 rounded-lg hover:bg-[#F4F9F4]"
+                        title="Meal Plan"
                     >
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-4 h-4 text-[#2D6A4F]">
                             <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
@@ -162,17 +164,17 @@ export default function RecipePage() {
                             <line x1="8" y1="2" x2="8" y2="6"/>
                             <line x1="3" y1="10" x2="21" y2="10"/>
                         </svg>
-                        Meal Plan
+                        <span className="hidden sm:inline">Meal Plan</span>
                     </Link>
                     <button
                         onClick={() => router.back()}
-                        className="text-sm text-[#1B1B1B] hover:text-[#2D6A4F] transition flex items-center gap-1 font-medium"
+                        className="text-xs sm:text-sm text-[#1B1B1B] hover:text-[#2D6A4F] transition flex items-center gap-1 font-medium border border-[#2D6A4F]/20 px-2.5 sm:px-3 py-1.5 rounded-xl hover:bg-[#F4F9F4]"
                     >
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-4 h-4">
                             <line x1="19" y1="12" x2="5" y2="12"/>
                             <polyline points="12 19 5 12 12 5"/>
                         </svg>
-                        Back
+                        <span className="hidden xs:inline sm:inline">Back</span>
                     </button>
                 </div>
             </nav>
