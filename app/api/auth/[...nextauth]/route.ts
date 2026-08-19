@@ -1,11 +1,16 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import GoogleProvider from "next-auth/providers/google";
 import bcrypt from "bcryptjs";
 import { connectDB } from "@/lib/db";
 import User from "@/models/User";
 
 const handler = NextAuth({
   providers: [
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID || "",
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET || "",
+    }),
     CredentialsProvider({
       name: "Credentials",
       credentials: {
@@ -18,7 +23,7 @@ const handler = NextAuth({
         await connectDB();
         const user = await User.findOne({ email: credentials.email });
 
-        if (!user) return null;
+        if (!user || !user.password) return null;
 
         const isValid = await bcrypt.compare(
           credentials.password,
@@ -35,8 +40,32 @@ const handler = NextAuth({
     }),
   ],
   callbacks: {
-    async jwt({ token, user }) {
+    async signIn({user,account}){
+      if(account?.provider==="google"){
+        await connectDB();
+
+        const existingUser=await User.findOne({email:user.email});
+
+        if(!existingUser){
+          await User.create({
+            name:user.name || "Google User",
+            email:user.email
+          });
+        }
+      }
+      return true;
+    },
+    async jwt({ token, user,account }) {
+
       if (user) token.id = user.id;
+
+      if(account){
+        await connectDB();
+        const dbUser=await User.findOne({email:token.email});
+        if(dbUser){
+          token.id=dbUser._id.toString();
+        }
+      }
       return token;
     },
     async session({ session, token }) {

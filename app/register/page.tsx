@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import toast from "react-hot-toast";
+import { signIn } from "next-auth/react";
 import AuthBackground from "@/components/AuthBackground";
 
 export default function RegisterPage() {
@@ -36,13 +36,7 @@ export default function RegisterPage() {
   };
 
   const handleGoogleSignIn = () => {
-    toast("Google sign-in is coming soon! Please use your email and password.", {
-      icon: "🍳",
-      style: {
-        background: "#2D6A4F",
-        color: "#FEFAE0",
-      },
-    });
+    signIn("google",{callbackUrl:"/dashboard"})
   };
 
   return (
