@@ -11,6 +11,9 @@ export interface IUser extends Document {
     servings: number;
   };
   ingredients: string[];
+  isVerified:boolean,
+  otp?:string,
+  otpExpires?:Date,
   dailyGenerations: number;
   lastGenerationDate: string;
   createdAt: Date;
@@ -27,6 +30,9 @@ const UserSchema = new Schema<IUser>({
     servings: { type: Number, default: 2 },
   },
   ingredients: [{ type: String }],
+  isVerified: {type:Boolean,default:false},
+  otp:{type:String},
+  otpExpires:{type:Date},
   dailyGenerations: { type: Number, default: 0 },
   lastGenerationDate: { type: String, default: "" },
   createdAt: { type: Date, default: Date.now },

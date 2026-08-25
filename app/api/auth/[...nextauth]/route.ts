@@ -31,6 +31,10 @@ const handler = NextAuth({
         );
         if (!isValid) return null;
 
+        if(!user.isVerified){
+          throw new Error("Email not verified");
+        }
+
         return {
           id: user._id.toString(),
           name: user.name,
@@ -49,8 +53,12 @@ const handler = NextAuth({
         if(!existingUser){
           await User.create({
             name:user.name || "Google User",
-            email:user.email
+            email:user.email,
+            isVerified:true
           });
+        }else if(!existingUser.isVerified){
+          existingUser.isVerified=true;
+          await existingUser.save();
         }
       }
       return true;
