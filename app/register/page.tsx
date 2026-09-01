@@ -32,7 +32,13 @@ export default function RegisterPage() {
       return;
     }
 
-router.push(`/verify-email?email=${encodeURIComponent(form.email)}`);
+    try {
+      sessionStorage.setItem("signup_password", form.password);
+    } catch (e) {
+      // Ignore if sessionStorage is disabled in browser
+    }
+
+    router.push(`/verify-email?email=${encodeURIComponent(form.email)}`);
   };
 
   const handleGoogleSignIn = () => {

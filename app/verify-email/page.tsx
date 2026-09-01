@@ -2,6 +2,7 @@
 
 import { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
+import { signIn } from "next-auth/react";
 import AuthBackground from "@/components/AuthBackground";
 import toast from "react-hot-toast";
 
@@ -46,7 +47,33 @@ function VerifyEmailForm() {
         return;
       }
 
-      toast.success("Email verified successfully! Please log in.");
+      toast.success("Email verified successfully!");
+
+      // Attempt auto sign-in if password was stored during registration
+      let pendingPassword: string | null = null;
+      try {
+        pendingPassword = sessionStorage.getItem("signup_password");
+        if (pendingPassword) {
+          sessionStorage.removeItem("signup_password");
+        }
+      } catch (e) {
+        // Ignore if sessionStorage is disabled
+      }
+
+      if (pendingPassword) {
+        const signInRes = await signIn("credentials", {
+          email,
+          password: pendingPassword,
+          redirect: false,
+        });
+
+        if (!signInRes?.error) {
+          window.location.href = "/dashboard";
+          return;
+        }
+      }
+
+      // Fallback if password isn't found in sessionStorage
       router.push("/login?verified=true");
     } catch (err) {
       toast.error("Something went wrong. Please try again.");
