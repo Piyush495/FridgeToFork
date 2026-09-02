@@ -9,7 +9,8 @@ import AuthBackground from "@/components/AuthBackground";
 function LoginForm() {
   const searchParams = useSearchParams();
   const registered = searchParams.get("registered");
-  const verified = searchParams.get("verified"); // <-- NEW QUERY PARAM
+  const verified = searchParams.get("verified");
+  const reset = searchParams.get("reset");
   
   const [form, setForm] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
@@ -55,6 +56,15 @@ function LoginForm() {
           Glad to see you again!
         </p>
       </div>
+
+      {reset && (
+        <div className="bg-[#D8F3DC] text-[#2D6A4F] text-xs sm:text-sm px-4 py-3 rounded-xl mb-6 border border-[#52B788]/30 flex items-center gap-2">
+          <svg viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5 flex-shrink-0">
+            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clipRule="evenodd" />
+          </svg>
+          <span>Password reset successfully! Please sign in.</span>
+        </div>
+      )}
 
       {verified && (
         <div className="bg-[#D8F3DC] text-[#2D6A4F] text-xs sm:text-sm px-4 py-3 rounded-xl mb-6 border border-[#52B788]/30 flex items-center gap-2">
@@ -157,6 +167,16 @@ function LoginForm() {
           </div>
         </div>
 
+        {/* Forgot Password Link */}
+        <div className="flex justify-end pt-1">
+          <Link
+            href="/forgot-password"
+            className="text-xs text-[#2D6A4F] font-semibold hover:underline"
+          >
+            Forgot password?
+          </Link>
+        </div>
+
         {/* Submit button */}
         <button
           type="submit"
@@ -247,7 +267,7 @@ export default function LoginPage() {
                 </div>
                 <div>
                   <h3 className="font-bold text-base text-[#1B1B1B]">Smart Recipe Suggestions</h3>
-                  <p className="text-sm text-[#7A7A6E] mt-0.5">Get personalized recipes based on what's in your fridge.</p>
+                  <p className="text-sm text-[#7A7A6E] mt-0.5">Get personalized recipes based on what&apos;s in your fridge.</p>
                 </div>
               </div>
 

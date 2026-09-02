@@ -14,6 +14,8 @@ export interface IUser extends Document {
   isVerified:boolean,
   otp?:string,
   otpExpires?:Date,
+  resetOtp?:string,
+  resetOtpExpires?:Date,
   dailyGenerations: number;
   lastGenerationDate: string;
   createdAt: Date;
@@ -33,6 +35,8 @@ const UserSchema = new Schema<IUser>({
   isVerified: {type:Boolean,default:false},
   otp:{type:String},
   otpExpires:{type:Date},
+  resetOtp:{type:String},
+  resetOtpExpires:{type:Date},
   dailyGenerations: { type: Number, default: 0 },
   lastGenerationDate: { type: String, default: "" },
   createdAt: { type: Date, default: Date.now },
